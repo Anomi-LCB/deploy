@@ -24,6 +24,6 @@
   "scripts": {
     "lint": "eslint . --ext .js,.json,.md",
     "format": "prettier --write .",
-    "build": "wrangler deploy --dry-run --outdir=dist" 
+    "build": "wrangler deploy index.js --dry-run --outdir=dist --name file-api" 
   }
 }
