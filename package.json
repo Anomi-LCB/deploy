@@ -14,6 +14,7 @@
     "@eslint/json": "^0.12.0",
     "@eslint/markdown": "^6.4.0",
     "esbuild": "^0.25.3",
+    "esbuild-plugin-inline-import": "^1.1.0",
     "eslint": "^9.25.1",
     "eslint-config-prettier": "^10.1.2",
     "eslint-plugin-prettier": "^5.2.6",
@@ -25,6 +26,6 @@
   "scripts": {
     "lint": "eslint . --ext .js,.json,.md",
     "format": "prettier --write .",
-    "build": "esbuild index.js --bundle --outfile=dist/worker.js --format=esm --target=esnext --platform=neutral --loader:.json=json"
+    "build": "node esbuild.config.js"
   }
 }

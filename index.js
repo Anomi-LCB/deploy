@@ -5,7 +5,7 @@ import { jwt } from "hono/jwt"; // JWT 미들웨어
 import { zValidator } from "@hono/zod-validator"; // Zod 검증 미들웨어
 import { z } from "zod"; // Zod 스키마 정의
 import { getMimeType } from "hono/utils/mime"; // MIME 타입 유틸리티 import
-import openapiSpec from 'openapi.json' assert { type: 'json' }; // OpenAPI 스펙 import (3.1.0으로 수정 필요할 수 있음)
+import openapiSpec from './openapi.json'; // OpenAPI 스펙 import (3.1.0으로 수정 필요할 수 있음)
 
 // Hono 앱 인스턴스 생성
 const app = new Hono();
