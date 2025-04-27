@@ -21,11 +21,14 @@ resource "cloudflare_workers_kv_namespace" "file_api_kv" {
   title      = "FILE_API_KV"
 }
 
-# Cloudflare Worker 스크립트 리소스 정의 (다시 추가됨)
+# Cloudflare Worker 스크립트 리소스 정의 (원래 목표 버전)
 resource "cloudflare_workers_script" "file_api_worker" {
   account_id = "0ece330533795f5adde5906988a2ef5e"
   name       = "file-api"
-  content    = file("../dist/worker.js") # esbuild 번들 결과 사용!
+
+  # 중요: 아래 파일 이름이 실제 빌드 결과물(dist/ 폴더 안)과 일치하는지 꼭 확인하세요!
+  content    = file("../dist/worker.js") # 또는 "../dist/_worker.js" 등 실제 파일 이름
+
   module     = true
 
   kv_namespace_binding {

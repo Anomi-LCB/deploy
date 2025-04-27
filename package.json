@@ -20,11 +20,12 @@
     "globals": "^16.0.0",
     "jsonc-eslint-parser": "^2.4.0",
     "prettier": "^3.5.3",
-    "wrangler": "^4.13.2"
+    "wrangler": "^4.13.2" // wrangler는 devDependency로 유지해도 괜찮습니다.
   },
   "scripts": {
     "lint": "eslint . --ext .js,.json,.md",
     "format": "prettier --write .",
+    // esbuild를 사용하도록 수정 (JSON 로더 포함)
     "build": "esbuild index.js --bundle --outfile=dist/worker.js --format=esm --target=esnext --platform=neutral --loader:.json=json"
   }
 }

@@ -1,0 +1,19 @@
+name               = "file-api"
+account_id         = "0ece330533795f5adde5906988a2ef5e"
+compatibility_date = "2025-04-24"
+compatibility_flags = ["nodejs_compat"]
+workers_dev        = true
+main               = "index.js"
+
+[site]
+  bucket  = "./public"
+
+[[r2_buckets]]
+  binding              = "FILES"
+  bucket_name          = "file-api-bucket"           # 프로덕션용
+  preview_bucket_name  = "file-api-bucket-preview"   # 개발(Preview)용
+
+[[kv_namespaces]]
+  binding    = "FILE_API_KV"
+  id         = "aac855810724452f89b03f0af4413d1f"
+  preview_id = "104cc80f5f3f4808b809b51841c798c9"

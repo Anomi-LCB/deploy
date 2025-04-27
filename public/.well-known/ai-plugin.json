@@ -1,0 +1,22 @@
+{
+  "schema_version": "v1",
+  "name_for_human": "R2 파일 관리자",
+  "name_for_model": "cloudflare_r2_file_manager",
+  "description_for_human": "Cloudflare R2 버킷의 파일 및 폴더를 관리(생성, 읽기, 목록 조회, 삭제 등)합니다.",
+  "description_for_model": "Cloudflare R2 스토리지를 사용하는 파일 및 폴더 관리 API입니다. 사용자가 특정 경로에 파일을 생성, 읽기, 업데이트, 삭제하거나 폴더를 생성, 삭제, 확인하거나 특정 경로의 파일/폴더 목록 조회를 요청할 때 이 API를 사용해야 합니다. '내 R2 버킷에 파일 올려줘', 'my_folder/notes.txt 내용 보여줘', '루트 폴더의 파일 목록 알려줘', '임시 폴더 만들어줘', '보고서.docx 파일 삭제해줘' 와 같은 요청을 처리합니다. 파일 경로는 슬래시('/')로 끝나지 않고, 폴더 경로는 반드시 슬래시('/')로 끝나야 합니다.",
+  "auth": {
+    "type": "service_http",
+    "authorization_type": "bearer",
+    "verification_tokens": {
+      "openai": "PLUGIN_VERIFICATION_TOKEN_PLACEHOLDER"
+    }
+  },
+  "api": {
+    "type": "openapi",
+    "url": "https://file-api.file-api.workers.dev/openapi.json",
+    "is_user_authenticated": false
+  },
+  "logo_url": "https://place-your-logo-url-here.com/logo.png",
+  "contact_email": "dlckdqja710@gmail.com",
+  "legal_info_url": "https://your-website.com/legal"
+}

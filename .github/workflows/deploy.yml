@@ -21,13 +21,8 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Build Worker Check
-        run: npm run build # wrangler publish --dry-run 실행
-
-      # --- ↓↓↓ 빌드 결과 확인 단계 추가 ↓↓↓ ---
-      - name: List Build Output
-        run: ls -R dist
-      # --- ↑↑↑ 빌드 결과 확인 단계 추가 ↑↑↑ ---
+      - name: Build Worker # esbuild 실행 (수정된 package.json 참조)
+        run: npm run build
 
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v3
