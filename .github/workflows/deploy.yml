@@ -21,6 +21,9 @@ jobs:
       - name: Install dependencies
         run: npm ci # package-lock.json 기반으로 의존성 설치
 
+      - name: Install Wrangler CLI
+        run: npm install -g wrangler # wrangler CLI 전역 설치
+        
       - name: Build Worker
         run: npm run build # wrangler로 번들링 실행
 
