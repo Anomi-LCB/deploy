@@ -1,0 +1,47 @@
+name: Deploy Cloudflare Worker via Terraform
+
+on:
+  push:
+    branches:
+      - main # main 브랜치에 push될 때 워크플로우 실행 (필요시 브랜치 이름 변경)
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest # 실행 환경 지정
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4 # 저장소 코드 가져오기
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4 # Node.js 환경 설정
+        with:
+          node-version: '20' # 사용하는 Node.js 버전 지정 (필요시 변경)
+          cache: 'npm' # npm 캐시 사용
+
+      - name: Install dependencies
+        run: npm ci # package-lock.json 기반으로 의존성 설치
+
+      - name: Build Worker
+        run: npm run build # wrangler로 번들링 실행
+
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v3 # Terraform 환경 설정
+
+      - name: Terraform Init
+        working-directory: ./terraform # terraform 폴더에서 실행
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }} # GitHub Secrets 사용
+        run: terraform init
+
+      # Terraform Plan (선택 사항, 변경 내역 확인용)
+      # - name: Terraform Plan
+      #   working-directory: ./terraform
+      #   env:
+      #     CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+      #   run: terraform plan
+
+      - name: Terraform Apply
+        working-directory: ./terraform # terraform 폴더에서 실행
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }} # GitHub Secrets 사용
+        run: terraform apply -auto-approve # 자동 승인 (-auto-approve 옵션)

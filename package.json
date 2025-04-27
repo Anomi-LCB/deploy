@@ -1,0 +1,29 @@
+{
+  "name": "file-api",
+  "version": "1.0.0",
+  "dependencies": {
+    "@hono/zod-validator": "^0.4.3",
+    "@tsndr/cloudflare-worker-jwt": "^3.1.4",
+    "hono": "^4.7.7",
+    "zod": "^3.24.3"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.26.10",
+    "@babel/eslint-parser": "^7.27.0",
+    "@eslint/js": "^9.25.1",
+    "@eslint/json": "^0.12.0",
+    "@eslint/markdown": "^6.4.0",
+    "esbuild": "^0.25.3",
+    "eslint": "^9.25.1",
+    "eslint-config-prettier": "^10.1.2",
+    "eslint-plugin-prettier": "^5.2.6",
+    "globals": "^16.0.0",
+    "jsonc-eslint-parser": "^2.4.0",
+    "prettier": "^3.5.3"
+  },
+  "scripts": {
+    "lint": "eslint . --ext .js,.json,.md",
+    "format": "prettier --write .",
+    "build": "wrangler deploy --dry-run --outdir=dist" 
+  }
+}
