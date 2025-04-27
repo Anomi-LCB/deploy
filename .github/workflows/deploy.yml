@@ -28,6 +28,6 @@ jobs:
         # npx wrangler deploy 실행 (CI 환경에서 인증 필요)
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }} # GitHub Secrets 사용
-        run: npx wrangler deploy
+        run: npx wrangler deploy index.js --name file-api --compatibility-date=2025-04-24 --kv=FILE_API_KV --r2=FILES --compatibility-flag=nodejs_compat --latest
 
       # --- Terraform 관련 단계는 모두 삭제됨 ---
