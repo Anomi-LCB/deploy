@@ -25,6 +25,6 @@
   "scripts": {
     "lint": "eslint . --ext .js,.json,.md",
     "format": "prettier --write .",
-    "build": "npx wrangler publish index.js --dry-run --outdir=dist"
+    "build": "esbuild index.js --bundle --outfile=dist/worker.js --format=esm --target=esnext --platform=neutral"
   }
 }
