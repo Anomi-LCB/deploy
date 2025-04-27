@@ -19,11 +19,12 @@
     "eslint-plugin-prettier": "^5.2.6",
     "globals": "^16.0.0",
     "jsonc-eslint-parser": "^2.4.0",
-    "prettier": "^3.5.3"
+    "prettier": "^3.5.3",
+    "wrangler": "^4.13.2"
   },
   "scripts": {
     "lint": "eslint . --ext .js,.json,.md",
     "format": "prettier --write .",
-    "build": "wrangler deploy index.js --dry-run --outdir=dist --name file-api" 
+    "build": "wrangler deploy index.js --dry-run --outdir=dist --name file-api"
   }
 }
