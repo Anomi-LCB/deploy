@@ -1,4 +1,4 @@
-name: Deploy Cloudflare Worker via Terraform # 이름 복원
+name: Deploy Cloudflare Worker via Terraform
 
 on:
   push:
@@ -21,12 +21,14 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      # Install Wrangler CLI 단계는 삭제됨
+      - name: Build Worker Check
+        run: npm run build # wrangler publish --dry-run 실행
 
-      - name: Build Worker # esbuild 실행
-        run: npm run build
+      # --- ↓↓↓ 빌드 결과 확인 단계 추가 ↓↓↓ ---
+      - name: List Build Output
+        run: ls -R dist
+      # --- ↑↑↑ 빌드 결과 확인 단계 추가 ↑↑↑ ---
 
-      # --- ↓↓↓ Terraform 단계 다시 추가 ↓↓↓ ---
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v3
 
@@ -36,9 +38,8 @@ jobs:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
         run: terraform init
 
-      - name: Terraform Apply # wrangler deploy 대신 terraform apply 사용
+      - name: Terraform Apply
         working-directory: ./terraform
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
         run: terraform apply -auto-approve
-      # --- ↑↑↑ Terraform 단계 다시 추가 ↑↑↑ ---
